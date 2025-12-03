@@ -27,7 +27,7 @@ const Header = () => {
   const handleNavigate = () => setIsMenuOpen(false);
 
   return (
-    <header className="relative z-30 overflow-hidden">
+    <header className={`relative z-30 ${isMenuOpen ? 'overflow-visible' : 'overflow-hidden'}`}>
       <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/10 opacity-40" aria-hidden="true" />
       <div className="absolute inset-0 blur-3xl opacity-30" style={{ background: 'radial-gradient(circle at 15% 40%, rgba(140,255,245,0.25), transparent 55%)' }} aria-hidden="true" />
       <div className="relative px-4 sm:px-6 md:px-10 py-5 lg:py-7 flex items-center justify-between gap-4 border-b border-white/10 backdrop-blur-2xl">
