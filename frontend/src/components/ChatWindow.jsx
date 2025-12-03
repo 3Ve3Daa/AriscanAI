@@ -639,7 +639,7 @@ const ChatWindow = () => {
 
         {isTyping && (
           <div className="flex items-start gap-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#46c8ff] to-[#7b8dff] flex items-center justify-center text-white font-semibold">
+            <div className="mt-8 w-8 h-8 rounded-full bg-gradient-to-br from-[#46c8ff] to-[#7b8dff] flex items-center justify-center text-white font-semibold">
               AI
             </div>
             <div className="bg-white/8 border border-white/10 backdrop-blur-md rounded-2xl rounded-tl-none px-3 py-2.5 max-w-[72%]">
