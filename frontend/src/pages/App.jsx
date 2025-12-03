@@ -8,13 +8,13 @@ import FeatureGrid from '../components/FeatureGrid';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 
 const App = () => (
-  <div className="bg-app-gradient text-white min-h-screen flex flex-col">
+  <div className="bg-app-gradient text-white min-h-screen">
     <Header />
-    <main className="flex-1 overflow-y-auto custom-scroll">
+    <main className="max-w-6xl mx-auto px-4 md:px-10 lg:px-14 pb-24 space-y-16">
       <HeroSection />
       <SuccessShowcase />
       <SurveyShowcase />
-      <section id="chat" className="relative py-16 md:py-20 px-4 md:px-12">
+      <section id="chat" className="relative py-16 md:py-20">
         <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-50" />
         <div className="relative max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
