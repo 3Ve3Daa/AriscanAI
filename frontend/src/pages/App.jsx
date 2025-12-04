@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div className="bg-app-gradient text-white min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 relative overflow-hidden">
+      <main className="flex-1 relative overflow-hidden custom-scroll">
         <div className="absolute inset-0 -z-20 bg-app-gradient" aria-hidden="true" />
         <div
           className="animated-gradient-layer pointer-events-none"

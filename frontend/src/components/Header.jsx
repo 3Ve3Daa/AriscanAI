@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <header className={`relative z-40 transition-all duration-300 ${isMenuOpen ? 'overflow-visible' : 'overflow-hidden'}`}>
       <div className="absolute inset-0 bg-gradient-to-r from-white/8 via-transparent to-white/10 opacity-40" aria-hidden="true" />
-      <div className="absolute inset-0 blur-3xl opacity-40" style={{ background: 'radial-gradient(circle at 18% 35%, rgba(140,255,245,0.28), transparent 58%)' }} aria-hidden="true" />
+      <div className="absolute inset-0 blur-3xl opacity-35" style={{ background: 'radial-gradient(circle at 16% 38%, rgba(140,255,245,0.26), transparent 56%)' }} aria-hidden="true" />
       <div className="relative px-4 sm:px-6 md:px-10 py-5 lg:py-7 flex items-center justify-between gap-4 border-b border-white/10 backdrop-blur-2xl">
         <div className="flex items-center gap-4">
           <button
