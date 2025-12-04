@@ -1,16 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import LogoIcon from './LogoIcon.jsx';
-
-const navLinks = [
-  { href: '#hero', label: 'Басты бет' },
-  { href: '#success', label: 'Зерттеу' },
-  { href: '#survey', label: 'Сауалнама' },
-  { href: '#chat', label: 'Чат' },
-  { href: '#features', label: 'Мүмкіндіктер' },
-];
+import { useTranslations } from '../hooks/useTranslations.js';
+import { useLanguage } from '../contexts/LanguageContext.jsx';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const t = useTranslations();
+  const { lang, toggle } = useLanguage();
+
+  const navLinks = useMemo(() => ([
+    { href: '#hero', label: t.nav.hero },
+    { href: '#success', label: t.nav.success },
+    { href: '#survey', label: t.nav.survey },
+    { href: '#ai-highlights', label: t.nav.highlights },
+    { href: '#chat', label: t.nav.chat },
+    { href: '#features', label: t.nav.features },
+  ]), [t.nav]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,9 +32,9 @@ const Header = () => {
   const handleNavigate = () => setIsMenuOpen(false);
 
   return (
-    <header className="relative z-30 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/10 opacity-40" aria-hidden="true" />
-      <div className="absolute inset-0 blur-3xl opacity-30" style={{ background: 'radial-gradient(circle at 15% 40%, rgba(140,255,245,0.25), transparent 55%)' }} aria-hidden="true" />
+    <header className={`relative z-40 transition-all duration-300 ${isMenuOpen ? 'overflow-visible' : 'overflow-hidden'}`}>
+      <div className="absolute inset-0 bg-gradient-to-r from-white/8 via-transparent to-white/10 opacity-40" aria-hidden="true" />
+      <div className="absolute inset-0 blur-3xl opacity-40" style={{ background: 'radial-gradient(circle at 18% 35%, rgba(140,255,245,0.28), transparent 58%)' }} aria-hidden="true" />
       <div className="relative px-4 sm:px-6 md:px-10 py-5 lg:py-7 flex items-center justify-between gap-4 border-b border-white/10 backdrop-blur-2xl">
         <div className="flex items-center gap-4">
           <button
@@ -49,7 +54,7 @@ const Header = () => {
             <p className="text-xl sm:text-2xl font-semibold tracking-wide text-transparent bg-clip-text animated-gradient-text drop-shadow-[0_0_25px_rgba(140,255,245,0.4)]">
               AriscanAI
             </p>
-            <p className="text-[10px] sm:text-xs uppercase tracking-[0.35em] text-white/60">Суды үнемдеу AI ассистент</p>
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.35em] text-white/60">{t.header.brandTagline}</p>
           </div>
         </div>
 
@@ -66,14 +71,21 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggle}
+            className="px-4 py-2 rounded-full border border-white/15 bg-white/10 text-white/85 text-xs tracking-[0.3em] uppercase hover:bg-white/15 transition"
+          >
+            {lang === 'kk' ? 'ҚАЗ → РУС' : 'РУС → ҚАЗ'}
+          </button>
           <span className="px-4 py-2 rounded-full neon-pill text-white/80 text-xs tracking-wide uppercase">
-            Сенімді деректер
+            {t.header.reliableBadge}
           </span>
           <a
             href="#chat"
             className="px-5 py-2 rounded-full bg-gradient-to-r from-[#33d1ff] via-[#4f46e5] to-[#7c3aed] text-white font-semibold text-sm shadow-[0_12px_30px_-12px_rgba(79,70,229,0.9)] hover:opacity-90 transition"
           >
-            Чатты ашу
+            {t.header.openChatCta}
           </a>
         </div>
       </div>
@@ -91,12 +103,22 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                toggle();
+                handleNavigate();
+              }}
+              className="px-5 py-4 text-sm font-semibold text-[#8cfff5] hover:text-white"
+            >
+              {lang === 'kk' ? 'Қазақша → Рус' : 'Русский → Қаз'}
+            </button>
             <a
               href="#chat"
               onClick={handleNavigate}
               className="px-5 py-4 text-sm font-semibold text-white bg-gradient-to-r from-[#33d1ff] via-[#4f46e5] to-[#7c3aed] rounded-b-3xl"
             >
-              Чатты ашу
+              {t.header.openChatCta}
             </a>
           </nav>
         </div>

@@ -4,6 +4,7 @@ import { config } from '../config.js';
 import { buildMessages } from '../services/promptBuilder.js';
 import { generateFallbackAnswer } from '../services/fallbackResponder.js';
 import { chatLimiter } from '../middleware/rateLimit.js';
+import { handleWithToolkit } from '../services/toolkit.js';
 
 const router = express.Router();
 
@@ -34,6 +35,17 @@ export const registerChatRoutes = (app, knowledgeBase) => {
     }
 
     try {
+      const toolkitResult = await handleWithToolkit(message, history);
+
+      if (toolkitResult?.reply) {
+        return res.json({
+          reply: toolkitResult.reply,
+          source: toolkitResult.source || 'toolkit',
+          knowledgeAvailable: knowledgeBase.available,
+          toolUsed: toolkitResult.source || 'toolkit',
+        });
+      }
+
       if (!openAiAvailable) {
         const fallback = generateFallbackAnswer(message);
         return res.json({
